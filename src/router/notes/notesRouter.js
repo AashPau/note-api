@@ -54,10 +54,10 @@ router.get("/", async (req, res) => {
 });
 
 //get one note
-router.get("/:id", async (req, res) => {
-  const id = req.params.id; // Extract ID from request parameters
+router.get("/note", async (req, res) => {
+  const _id = req.headers.authorization; // Extract ID from request parameters
   try {
-    const result = await getOneNote(id);
+    const result = await getOneNote(_id);
     if (result) {
       res.status(200).json({
         status: "success",
@@ -71,7 +71,7 @@ router.get("/:id", async (req, res) => {
       });
     }
   } catch (error) {
-    console.error("Error fetching note:", error);
+    console.error("Error fetching note: Server Error");
     res.status(500).json({
       status: "error",
       message: error.message,
@@ -79,10 +79,10 @@ router.get("/:id", async (req, res) => {
   }
 });
 //delete one note
-router.delete("/:id", async (req, res) => {
-  const id = req.params.id;
+router.delete("/", async (req, res) => {
+  const _id = req.headers.authorization;
   try {
-    const result = await deleteOneNote(id);
+    const result = await deleteOneNote(_id);
     console.log(result);
     if (result) {
       res.status(200).json({

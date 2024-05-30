@@ -9,7 +9,7 @@ export const getAllNotes = () => {
 };
 
 export const getOneNote = (_id) => {
-  return notesSchema.findById({ _id });
+  return notesSchema.findById(_id);
 };
 
 export const deleteOneNote = (_id) => {

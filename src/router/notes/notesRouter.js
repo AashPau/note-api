@@ -57,6 +57,7 @@ router.get("/", async (req, res) => {
 router.get("/note", async (req, res) => {
   const _id = req.headers.authorization; // Extract ID from request parameters
   try {
+    console.log({ _id });
     const result = await getOneNote(_id);
     if (result) {
       res.status(200).json({

@@ -2,7 +2,7 @@ import express from "express";
 import {
   createNewNote,
   deleteOneNote,
-  getAllNotes,
+  getnotesbyUser,
   getOneNote,
 } from "../../module/notes/notesModel.js";
 
@@ -11,8 +11,10 @@ const router = express.Router();
 //save a note
 router.post("/", async (req, res) => {
   try {
-    console.log(req.body);
-    const result = await createNewNote(req.body);
+    const userId = req.headers.authorization;
+    const { title, description } = req.body;
+    console.log({ userId });
+    const result = await createNewNote({ title, description, userId });
 
     result?._id
       ? res.status(200).json({
@@ -29,10 +31,12 @@ router.post("/", async (req, res) => {
   }
 });
 
-//get all notes
+//get all notes by a user
 router.get("/", async (req, res) => {
   try {
-    const result = await getAllNotes();
+    const userId = req.headers.authorization;
+    console.log({ userId });
+    const result = await getnotesbyUser(userId);
 
     result
       ? res.status(200).json({

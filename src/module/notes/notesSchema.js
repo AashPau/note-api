@@ -10,6 +10,10 @@ const notesSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+    userId: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );

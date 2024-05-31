@@ -7,6 +7,9 @@ export const createNewNote = (obj) => {
 export const getAllNotes = () => {
   return notesSchema.find();
 };
+export const getnotesbyUser = (userId) => {
+  return notesSchema.find({ userId });
+};
 
 export const getOneNote = (_id) => {
   return notesSchema.findById(_id);
